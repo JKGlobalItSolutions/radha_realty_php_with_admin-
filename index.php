@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets1/img/favicon.png" rel="icon">
+  <link href="images/logo.png" rel="icon">
   <link href="assets1/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -47,14 +47,14 @@
 
 <body>
   <!-- ======= Header/Navbar ======= -->
-  <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top ">
+  <nav class="navbar navbar-default navbar-trans navbar-expand-lg  ">
     <div class="container">
       <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span></span>
         <span></span>
         <span></span>
       </button>
-      <a class="navbar-brand text-brand" href="index.php">Radha <span class="color-b">Realty</span></a>
+      <a class="navbar-brand text-brand" href="index.php"><img src="images/logo.png" height="100px" alt=""></a>
 
       <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
         <ul class="navbar-nav">
@@ -221,93 +221,88 @@
       </div>
     </section><!-- End Services Section -->
 
-    <!-- ======= Latest Properties Section ======= -->
-    <section class="section-property section-t8">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
-              <div class="title-box">
-                <h2 class="title-a">Latest Properties</h2>
-              </div>
-              <div class="title-link">
-                <a href="property-grid.html">All Property
-                  <span class="bi bi-chevron-right"></span>
-                </a>
-              </div>
+        <!-- ======= Latest Properties Section ======= -->
+        <section class="section-property section-t8">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title-wrap d-flex justify-content-between">
+                            <div class="title-box">
+                                <h2 class="title-a">Latest Properties</h2>
+                            </div>
+                            <div class="title-link">
+                                <a href="property-grid.html">All Property
+                                    <span class="bi bi-chevron-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="property-carousel" class="swiper">
+                    <div class="swiper-wrapper">
+                        <?php
+                        include 'admin/db_connect.php';
+                        $qry = $conn->query("SELECT * FROM  room_categories order by rand() ");
+                        while ($row = $qry->fetch_assoc()) :
+                        ?>
+                            <div class="carousel-item-b swiper-slide">
+                                <div class="card-box-a card-shadow">
+                                    <div class="img-box-a">
+                                        <img src="assets/img/<?php echo $row['cover_img'] ?>" alt="" class="img-a " style="height: 400px; width: 400px;">
+                                    </div>
+                                    <div class="card-overlay">
+                                        <div class="card-overlay-a-content">
+                                            <div class="card-header-a">
+                                                <h2 class="card-title-a">
+                                                    <a href="property-single.html"><?php echo $row['name'] ?>
+                                                        <!-- <br /> South Bela Two -->
+                                                    </a>
+                                                </h2>
+                                            </div>
+                                            <div class="card-body-a">
+                                                <div class="price-box d-flex">
+                                                    <p class="price-a">price : <br> <?php echo "₹" . number_format($row['price'], 2) ?></p>
+                                                </div>
+                                                <a href="property-single.html" class="link-a">Click here to view
+                                                    <span class="bi bi-chevron-right"></span>
+                                                </a>
+                                            </div>
+                                            <!-- <div class="card-footer-a">
+                                                <ul class="card-info d-flex justify-content-around">
+                                                    <li>
+                                                        <h4 class="card-info-title">Area</h4>
+                                                        <span>340m
+                                                            <sup>2</sup>
+                                                        </span>
+                                                    </li> 
+                                                    <li>
+                                                        <h4 class="card-info-title">Beds</h4>
+                                                        <span>2</span>
+                                                    </li>
+                                                    <li>
+                                                        <h4 class="card-info-title">Baths</h4>
+                                                        <span>4</span>
+                                                    </li>
+                                                    <li>
+                                                        <h4 class="card-info-title">Garages</h4>
+                                                        <span>1</span>
+                                                    </li> 
+                                                </ul>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- End carousel item -->
+                        <?php endwhile; ?>
+                    </div>
+                </div>
+                <div class="propery-carousel-pagination carousel-pagination"></div>
+
             </div>
-          </div>
-        </div>
+        </section>
+        <!-- End Latest Properties Section -->
 
-        <div id="property-carousel" class="swiper">
-          <div class="swiper-wrapper"> 
-            <?php
-          include 'admin/db_connect.php';
-          $qry = $conn->query("SELECT * FROM  room_categories order by rand() ");
-          while ($row = $qry->fetch_assoc()) :
-          ?>
-            <div class="carousel-item-b swiper-slide">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                <img class="img-fluid" src="assets/img/<?php echo $row['cover_img'] ?>" alt="" />
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="property-single.html"><?php echo $row['name'] ?>
-                        </a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">price | <?php echo "₹" . number_format($row['price'], 2) ?></span>
-                      </div>
-                      <a href="property-single.html" class="link-a">Click here to view
-                        <span class="bi bi-chevron-right"></span>
-                      </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">Area</h4>
-                          <span>340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <!-- <li>
-                          <h4 class="card-info-title">Beds</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Baths</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Garages</h4>
-                          <span>1</span>
-                        </li> -->
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End carousel item -->
-          <?php endwhile; ?>
-          </div>
-        </div>
-        <div class="propery-carousel-pagination carousel-pagination"></div>
-
-      </div>
-    </section><!-- End Latest Properties Section -->
-    <div id="portfolio">
-      <div class="container-fluid p-0">
-        <div class="row no-gutters">
-          
-
-        </div>
-      </div>
-    </div>
     <style>
     .call-buton .cc-calto-action-ripple {
             z-index: 99999;
